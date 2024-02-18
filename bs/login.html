@@ -16,6 +16,10 @@
         .login-message {
             display: none;
         }
+
+        #login-spinner {
+            display: none;
+        }
     </style>
 </head>
 
@@ -59,8 +63,18 @@
                     <option>高雄</option>
                 </datalist>
             </div>
-            <div class="text-end mb-3">
-                <button type="button" class="btn btn-primary" onclick="login()">Login</button>
+            <div class="d-flex align-items-center justify-content-between mb-3">
+                <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    登入說明
+                </button>
+                <button type="button" class="btn btn-primary" onclick="login()">
+                    <div class="d-flex gap-3 align-items-center">
+                        <div class="spinner-border text-danger" role="status" id="login-spinner">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <span>Login</span>
+                    </div>
+                </button>
             </div>
 
             <div class="mb-3 login-message" id="login-fail-message">
@@ -81,6 +95,25 @@
             </div>
         </form>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">登入說明</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    請輸入註冊時的帳號密碼進行登入。
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
@@ -92,18 +125,26 @@
 <script>
     const success = document.querySelector('#login-success-message');
     const fail = document.querySelector('#login-fail-message');
+    const spinner = document.querySelector('#login-spinner')
     let current = 'success'
 
     function login() {
-        if (current == 'success') {
-            success.style.display = 'block';
-            fail.style.display = 'none';
-            current = 'fail'
-        } else {
-            success.style.display = 'none';
-            fail.style.display = 'block';
-            current = 'success'
-        }
+        spinner.style.display = 'block';
+        setTimeout(() => {
+            spinner.style.display = 'none';
+            if (current == 'success') {
+                success.style.display = 'block';
+                fail.style.display = 'none';
+                current = 'fail'
+            } else {
+                success.style.display = 'none';
+                fail.style.display = 'block';
+                current = 'success'
+            }
+        }, 2000)
+
+
+
     }
 </script>
 
