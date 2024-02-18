@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AXE</title>
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <style>
+        .wrap {
+            width: 500px;
+            height: 500px;
+            margin: 20px auto;
+            border: 1px solid #000;
+        }
+
+        .axe {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            margin-top: 40px;
+            transform: rotate(120deg);
+            animation-name: run;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-timing-function: linear;
+        }
+
+        .axe .circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 30px;
+            background-color: #000;
+            z-index: 2;
+            position: relative;
+        }
+
+        .axe .line {
+            position: absolute;
+            top: 30px;
+            height: 200px;
+            width: 10px;
+            background: #2158aa;
+        }
+
+        .axe .cube {
+            position: absolute;
+            top: 230px;
+            width: 180px;
+            height: 80px;
+            background-color: red;
+            border-bottom-left-radius: 800px;
+            border-bottom-right-radius: 800px;
+        }
+
+        @keyframes run {
+            0% {
+                transform: rotate(120deg);
+            }
+
+            /* 20% {
+                transform: rotate(120deg);
+            }
+
+            80% {
+                transform: rotate(-120deg);
+            } */
+
+            100% {
+                transform: rotate(-120deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="wrap">
+            <div class="axe">
+                <div class="circle"></div>
+                <div class="line"></div>
+                <div class="cube"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

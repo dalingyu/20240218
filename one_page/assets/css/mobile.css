@@ -1,0 +1,123 @@
+.mobile-menu-switch {
+    display: none;
+}
+
+#mobile-menu-switch-checkbox {
+    display: none;
+}
+
+.flow .item {
+    transition: 0.4s;
+}
+
+
+
+
+
+@media screen and (max-width: 900px) {
+    .header .menu-wrap {
+        position: fixed;
+        top: -100%;
+    }
+
+    .mobile-menu-switch {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+    }
+
+    .mobile-menu-switch>span {
+        display: inline-flex;
+        width: 30px;
+        height: 5px;
+        background-color: #000;
+        border-radius: 100px;
+        transition: 0.4s;
+    }
+
+    .mobile-menu-switch:hover>span {
+        background-color: red;
+    }
+
+    #mobile-menu-switch-checkbox:checked+.wrap .mobile-menu-switch>span {
+        background: red;
+    }
+
+    #mobile-menu-switch-checkbox:checked+.wrap .mobile-menu-switch>span:nth-child(1) {
+        transform: rotate(45deg);
+        position: relative;
+        top: 10px;
+    }
+
+    #mobile-menu-switch-checkbox:checked+.wrap .mobile-menu-switch>span:nth-child(2) {
+        opacity: 0;
+    }
+
+    #mobile-menu-switch-checkbox:checked+.wrap .mobile-menu-switch>span:nth-child(3) {
+        transform: rotate(-45deg);
+        position: relative;
+        top: -10px;
+    }
+
+    #mobile-menu-switch-checkbox:checked+.wrap .menu-wrap {
+        width: 100%;
+        background: #fff;
+        top: 80px;
+        left: 0;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        transition: 0.8s;
+    }
+
+    #mobile-menu-switch-checkbox:checked+.wrap {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    #mobile-menu-switch-checkbox:checked+.wrap .menu-wrap .menu {
+        flex-direction: column;
+        padding-bottom: 20px;
+        padding-top: 20px;
+    }
+
+    #join-form .wrap {
+        flex-direction: column;
+    }
+
+    #join-form .wrap>div {
+        width: 100%;
+    }
+
+    #join-form .wrap>div:first-child::after {
+        top: unset;
+        right: unset;
+        bottom: 0;
+        left: 20px;
+        height: 0;
+        width: calc(100% - 40px);
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .flow .item:nth-child(even) .tip {
+        right: unset;
+        left: 70px;
+    }
+
+    .flow .item {
+        justify-content: flex-start;
+        padding-left: 20px;
+        margin-bottom: 85px;
+    }
+
+    .flow .item .tip {
+        left: 70px;
+    }
+
+    .flow::after {
+        left: 33px;
+    }
+}

@@ -1,0 +1,85 @@
+.clock-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background: #000;
+}
+
+.clock-wrap {
+    width: 300px;
+    height: 300px;
+    border-radius: 300px;
+    border: 2px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.clock-wrap .dot {
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    background: #fff;
+    position: relative;
+    z-index: 8;
+}
+
+.clock-wrap .hour {
+    position: absolute;
+    width: 5px;
+    height: calc(50% - 50px);
+    background: #9c0000;
+    top: 50px;
+    transform: rotate(20deg);
+    transform-origin: bottom;
+    z-index: 2;
+}
+
+.clock-wrap .minute {
+    position: absolute;
+    width: 5px;
+    height: calc(50% - 25px);
+    background: #aec917;
+    top: 25px;
+    transform: rotate(280deg);
+    transform-origin: bottom;
+    z-index: 3;
+}
+
+.clock-wrap .second {
+    position: absolute;
+    width: 5px;
+    height: calc(50% - 10px);
+    background: #3e96e7;
+    top: 10px;
+    transform: rotate(40deg);
+    transform-origin: bottom;
+    z-index: 4;
+}
+
+.clock-wrap .num {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+}
+
+.clock-wrap .num>div {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    position: absolute;
+    top: 10px;
+}
+
+.clock-wrap .num>div:nth-child(1) {
+    left: calc(50% - 20px);
+}
+
+.clock-wrap .num>div:nth-child(2) {
+    top: 15px;
+    left: calc(50% + 20px);
+}
