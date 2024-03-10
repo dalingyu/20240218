@@ -2,12 +2,10 @@ import { TodoStorage } from "./TodoStorage.js";
 import { TodoUser } from "./TodoUser.js";
 
 let uid = TodoUser.read();
-let skey = `${uid}-todo-app`;
-let storage = new TodoStorage(skey);
+let skey = '';
+let storage = '';
 let dom = {};
-let items = storage.read();
-
-// TODO: 登出功能
+let items = [];
 
 class Todo {
     constructor() {
@@ -18,6 +16,13 @@ class Todo {
      * 初始化因為 constructor 無法指定 async
      */
     async init() {
+        await this.initItems();
+        this.initDom();
+        this.initEvent();
+        this.restoreUI();
+    }
+
+    async initItems() {
         while (!uid) {
             let response = await Swal.fire({
                 title: '輸入帳號',
@@ -30,9 +35,9 @@ class Todo {
             }
         }
 
-        this.initDom();
-        this.initEvent();
-        this.restoreUI();
+        skey = `${uid}-todo-app`;
+        storage = new TodoStorage(skey);
+        items = storage.read();
     }
 
     /**
@@ -42,8 +47,9 @@ class Todo {
         dom = {
             text: document.querySelector('#data-text'),
             btn: document.querySelector('#add-btn'),
-            container: document.querySelector('#todo-data')
-        }
+            container: document.querySelector('#todo-data'),
+            change_btn: document.querySelector('#todo-change-user')
+        };
     }
 
     /**
@@ -53,6 +59,15 @@ class Todo {
         this.initInsertEvent();
         this.initStateToggleEvent();
         this.initRemoveEvent();
+        this.initChangeUserEvent();
+    }
+
+    initChangeUserEvent() {
+        dom.change_btn.addEventListener('click', () => {
+            uid = '';
+            TodoUser.write(uid);
+            location.reload();
+        });
     }
 
     /**
